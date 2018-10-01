@@ -23,7 +23,7 @@
             <form name="formulario" method="POST" action="bienvenida.jsp">
                 <fieldset>
                     <legend>Bienvenido/a <% out.print(" " + request.getParameter("usuario"));%></legend>
-                    <p>Hola, <% out.print(obj); %></p>
+                    <p>Hola, <% out.print("usuario"); %></p>
                 </fieldset>
 
             </form>
