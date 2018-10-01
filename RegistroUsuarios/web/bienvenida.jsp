@@ -12,6 +12,22 @@
         <title>Bienvenida</title>
     </head>
     <body>
-        <h1>Página de Bienvenida</h1>
+        <div>
+
+            <%      if (request.getParameter("enviar") != null) {
+
+                }
+
+
+            %>
+            <form name="formulario" method="POST" action="bienvenida.jsp">
+                <fieldset>
+                    <legend>Bienvenido/a <% out.print(" " + request.getParameter("usuario"));%></legend>
+                    <p>Hola, <% out.print(obj); %></p>
+                </fieldset>
+
+            </form>
+        </div>
+
     </body>
 </html>

@@ -13,12 +13,16 @@
     </head>
     <body>
         <div id="caja" style="width: 300px; margin: 0 auto;">
-            <form name="formulario" method="POST" action="registro.jsp"> <!-- Meter condicion para ir a registro o a bienvenida -->
+            <%
+                if (request.getParameter("enviar") == null) {
+            %>
+
+            <form name="formulario" method="POST" action=""> <!-- Meter condicion para ir a registro o a bienvenida, ¿validación? -->
                 <fieldset style="width: 300px;">
                     <legend>Bienvenido</legend>
                     <div>
-                        <p>Usuario:  <input type="text" name="caja" value="" size="20" style="float: right"/></p> 
-                        <p>Contraseña: <input type="password" name="caja" value="" size="20" style="float: right"/></p> 
+                        <p>Usuario:  <input type="text" name="usuario" value="" size="20" style="float: right"/></p> 
+                        <p>Contraseña: <input type="password" name="passwd" value="" size="20" style="float: right"/></p> 
                     </div>
                     <div id="botones">
                         <input type="submit" value="Aceptar" name="enviar" />
@@ -28,6 +32,9 @@
                 </fieldset>
 
             </form>
+            <%
+                }
+            %>
         </div>
     </body>
 </html>
