@@ -12,6 +12,6 @@
         <title>Bienvenida</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Página de Bienvenida</h1>
     </body>
 </html>
