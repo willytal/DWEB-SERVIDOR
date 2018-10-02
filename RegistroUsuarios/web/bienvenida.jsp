@@ -14,19 +14,17 @@
     <body>
         <div>
 
-            <%      if (request.getParameter("enviar") != null) {
+            <%      if (request.getParameter("enviar") != null) {%>
+           
+                <form  name = "formulario" method = "POST" action = "bienvenida.jsp"> 
+                    <fieldset>
+                        <legend> Bienvenido/a <% out.print(" " + request.getParameter("usuario")); %></legend>
+                        <p>Hola, <% out.print("usuario");%></p>
+                    </fieldset>
+                </form>
+            
+            <%}%>
 
-                }
-
-
-            %>
-            <form name="formulario" method="POST" action="bienvenida.jsp">
-                <fieldset>
-                    <legend>Bienvenido/a <% out.print(" " + request.getParameter("usuario"));%></legend>
-                    <p>Hola, <% out.print("usuario"); %></p>
-                </fieldset>
-
-            </form>
         </div>
 
     </body>
