@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="caja" style="width: 300px; margin: 0 auto;">
-            <form name="formulario" method="POST" action="validar.jsp">
+            <form name="formulario" method="POST" action="registrar.jsp">
                 <fieldset style="width: 300px">
                     <legend>Registro</legend>
                     <div>
@@ -26,16 +26,15 @@
                             <p><input type="radio" name="radio" value="DAM" checked="checked" />DAM</p>
                             <p><input type="radio" name="radio" value="DAW" />DAW</p>
                         </fieldset>
+                        
+                        <fieldset style="width: 250px">
+                            <legend>Administrador</legend>
+                            <p><input type="radio" name="radioAdmin" value="Si" checked="checked" />Admin</p>
+                            <p><input type="radio" name="radioAdmin" value="No" />User</p>
+                        </fieldset>
                         <br>
                         <div id="botones">
-                            <%
-                                if (request.getParameter("enviar") == null) {%>
                             <input type="submit" value="Aceptar" name="enviar"/>
-                            <%} else if (request.getParameter("pass") != request.getParameter("pass2")) {
-                                    out.print("Las contraseñas no coinciden");%>
-                                    <input  type = "submit" value = "Aceptar" name = "enviar" / >
-                                <%}
-                            %>
                             <input type="submit" value="Volver" name="enviar" />
                         </div>
                     </div>

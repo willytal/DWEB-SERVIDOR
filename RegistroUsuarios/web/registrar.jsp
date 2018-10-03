@@ -14,7 +14,7 @@
         <title>Validar</title>
     </head>
     <body>
-
+        
         <div style="width: 300px; margin: 0 auto;">
             <form name="formulario" method="POST" action="registro.jsp">
                 <fieldset style="width: 200px">
@@ -28,7 +28,7 @@
                             
                             for (Usuario user : l) {
                                 if (!request.getParameter("correo").equals(user.getCorreo())) {
-                                    u = new Usuario(request.getParameter("correo"), request.getParameter("pass"), request.getParameter("radio"));
+                                    u = new Usuario(request.getParameter("correo"), request.getParameter("pass"), request.getParameter("radio"), Integer.parseInt(request.getParameter("radioAdmin")));
                                     registrado = true;
                                 } else {
                                     registrado = false;
@@ -38,7 +38,7 @@
                             session.setAttribute("lista", l);
                         } else { //Si no hay una lista, se crea y se añade a la sesion
                             ArrayList<Usuario> l = new ArrayList();
-                            Usuario u = new Usuario(request.getParameter("correo"), request.getParameter("pass"), request.getParameter("radio"));
+                            Usuario u = new Usuario(request.getParameter("correo"), request.getParameter("pass"), request.getParameter("radio"), Integer.parseInt(request.getParameter("radioAdmin")));
                             l.add(u);
                             session.setAttribute("lista", l);
                             out.print(session.getAttribute("lista"));
