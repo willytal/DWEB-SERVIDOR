@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio</title>
+        <link rel="stylesheet" href="estilo/estilo.css">
     </head>
     <body>
         <%
@@ -26,32 +27,33 @@
                 for (Usuario us : l) {
                     if (us.getCorreo().equals(u.getCorreo())) {
                         if (us.getPassword().equals(u.getPassword())) {
-                            out.print("Inicio correcto");
+                            //Inicio correcto
         %>
-        
-        <form name="formulario" method="POST" style="width: 300px; margin: 0 auto;">
-            <fieldset style="width: 300px">
-                <legend>Bienvenido/a <%= us.getCorreo().toString()%></legend>
-                <p>Contraseña: <input type="text" name="caja" value="<% out.print(us.getPassword()); %>" size="125" disabled="disabled" /></p>
-                <p>Curso: <input type="text" name="caja" value="<% out.print(us.getCurso()); %>" size="125" disabled="disabled" /></p>
-                <p>Administrador: <input type="text" name="caja" value="<% out.print(us.getAdmin()); %>" size="125" disabled="disabled" /></p>
-                <input type="text" name="caja" value="" size="125" disabled="disabled" />
-                <input type="submit" value="Cerrar Sesion" name="enviar" />
-                <a href="index.html"><input type="submit" value="Volver" name="enviar" /></a>
-                <a href="listado.html"><input type="button" value="Listado" name="enviar" /></a>
-            </fieldset>
 
-        </form>
+                                    <form name="formulario" method="POST" style="width: 300px; margin: 0 auto;">
+                                        <fieldset style="width: 300px">
+                                            <legend>Bienvenido/a <%= us.getCorreo().toString()%></legend>
+                                            <p>Contraseña: <input type="text" name="caja" value="<% out.print(us.getPassword()); %>"  disabled="disabled" /></p>
+                                            <p>Curso: <input type="text" name="caja" value="<% out.print(us.getCurso()); %>" disabled="disabled" /></p>
+                                            <p>Administrador: <input type="text" name="caja" value="<% out.print(us.getAdmin()); %>" disabled="disabled" /></p>
+                                            <input type="submit" value="Cerrar Sesion" name="enviar" />
+                                            <a href="index.jsp"><input type="button" value="Volver" name="enviar" /></a>
+                                            <a href="listado.jsp"><input type="button" value="Listado" name="enviar" /></a>
+                                        </fieldset>
+                                    </form>
 
         <%
                         } else {
+                            //pass incorrecta
                             out.print("Usuario o contraseña incorrecta");
                         }
                     } else {
-                        out.print("Usuario incorrecto");
+                        //usuario incorrecto
+                        out.print("Usuario o contraseña incorrecta");
                     }
                 }
             } else {
+                //no hay lista creada
                 out.print("No hay ningun usuario registrado.");
             }
 

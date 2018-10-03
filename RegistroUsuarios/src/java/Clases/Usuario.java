@@ -73,7 +73,7 @@ public class Usuario {
             permiso = "Usuario";
         }
         
-        return "Correo: " + correo + ", Curso: " + curso + ", Admin: " + permiso;
+        return "Correo: " + correo + "\r\nCurso: " + curso + "\r\nPermisos de: " + permiso;
     }
 
 }

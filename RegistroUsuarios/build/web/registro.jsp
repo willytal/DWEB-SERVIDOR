@@ -29,13 +29,13 @@
                         
                         <fieldset style="width: 250px">
                             <legend>Administrador</legend>
-                            <p><input type="radio" name="radioAdmin" value="Si" checked="checked" />Admin</p>
-                            <p><input type="radio" name="radioAdmin" value="No" />User</p>
+                            <p><input type="radio" name="radioAdmin" value=0 checked="checked" />Admin</p>
+                            <p><input type="radio" name="radioAdmin" value=1 />User</p>
                         </fieldset>
                         <br>
                         <div id="botones">
                             <input type="submit" value="Aceptar" name="enviar"/>
-                            <input type="submit" value="Volver" name="enviar" />
+                            <a href="index.jsp"><input type="button" value="Volver" name="enviar" /></a>
                         </div>
                     </div>
                 </fieldset>
