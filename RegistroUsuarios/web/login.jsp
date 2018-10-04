@@ -22,34 +22,34 @@
             u.setCorreo(user);
             u.setPassword(pass);
             session.setAttribute("userlogeado", u);
-            
+
             if (session.getAttribute("lista") != null) {
                 ArrayList<Usuario> l = (ArrayList) session.getAttribute("lista");
                 for (Usuario us : l) {
                     if (us.getCorreo().equals(u.getCorreo())) {
                         if (us.getPassword().equals(u.getPassword())) {
                             //Inicio correcto
-%>
+        %>
 
-        <form name="formulario" method="POST" style="width: 300px; margin: 0 auto;">
-            <fieldset style="width: 300px">
-                <legend>Bienvenido/a <%= us.getCorreo().toString()%></legend>
-                <p>Contraseña: <input type="text" name="caja" value="<% out.print(us.getPassword()); %>"  disabled="disabled" /></p>
-                <p>Curso: <input type="text" name="caja" value="<% out.print(us.getCurso()); %>" disabled="disabled" /></p>
-                <p>Administrador: <input type="text" name="caja" value="<% out.print(us.getAdmin()); %>" disabled="disabled" /></p>
-                <input type="submit" value="Cerrar Sesion" name="enviar" />
-                <a href="index.jsp"><input type="button" value="Volver" name="enviar" /></a>
-                    <%
-                        if (us.getAdmin() == 0) {
-                    %>
-                <a href="listado.jsp"><input type="button" value="Listado" name="enviar" /></a>
-                    <%
-                        }
-                    %>
+                            <form name="formulario" method="POST" style="width: 300px; margin: 0 auto;">
+                                <fieldset style="width: 300px">
+                                    <legend>Bienvenido/a <%= us.getCorreo().toString()%></legend>
+                                    <p>Contraseña: <input type="text" name="caja" value="<% out.print(us.getPassword()); %>"  disabled="disabled" /></p>
+                                    <p>Curso: <input type="text" name="caja" value="<% out.print(us.getCurso()); %>" disabled="disabled" /></p>
+                                    <p>Administrador: <input type="text" name="caja" value="<% out.print(us.getAdmin()); %>" disabled="disabled" /></p>
+                                    <input type="submit" value="Cerrar Sesion" name="enviar" />
+                                    <a href="index.jsp"><input type="button" value="Volver" name="enviar" /></a>
+                                        <%
+                                            if (us.getAdmin() == 0) { //Si es admin pinta el botón listado, si no es admin, no lo pinta
+                                        %>
+                                    <a href="listado.jsp"><input type="button" value="Listado" name="enviar" /></a>
+                                        <%
+                                            }
+                                        %>
 
 
-            </fieldset>
-        </form>
+                                </fieldset>
+                            </form>
 
         <%
                         } else {
