@@ -4,6 +4,8 @@
     Author     : willy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Clases.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,5 +15,19 @@
     </head>
     <body>
         <h1>Listado</h1>
+        <div id="listado">
+            <%
+                ArrayList<Usuario> l = (ArrayList) session.getAttribute("lista"); //Recupero la lista de la sesion
+                Usuario u = (Usuario) session.getAttribute("userlogueado");
+
+                for (Usuario us : l) {
+            %>
+            <<form name="formulario"  ></form>
+                
+            <%
+                }
+            %>
+
+        </div>
     </body>
 </html>
