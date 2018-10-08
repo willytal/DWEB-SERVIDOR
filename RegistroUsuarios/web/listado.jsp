@@ -40,10 +40,14 @@
                             out.print("A");
                         }%>" name="enviarlist" />
                     <input type="submit" value="Borrar" name="enviarlist" />
-                    <input type="submit" value="Modificar" name="enviarlist" />
                 </fieldset>
             </form>
 
+                    <form name="formulario2" method="POST" action="modificar.jsp">
+                         <input type="hidden" name="correo2" value="<% out.print(us.getCorreo()); %>" size="20" />  
+                         <input type="submit" value="Modificar" name="enviarlist" />
+                    </form>        
+                    
             <%
 
                     }
