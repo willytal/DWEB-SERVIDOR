@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10-oct-2018, 13:23:54
+    Author     : willy
+*/
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+#formu{
+    width: 280px;
+    margin: auto;
+}
+
+#fieldlogin input{
+    float:right;
+}
+
+#usuarioincorrecto{
+    width: 150px;
+    margin: auto;
+}
+
+#form_roles{
+    width: 210px;
+    margin: auto;
+}
+
+#form_aulas{
+    width: 800px;
+    margin: auto;
+    background-color: #CCFF99;
+}
+
+#field_aulas{
+    /*height: 475px;*/
+}
