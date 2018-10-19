@@ -16,12 +16,10 @@
         <title>Seleccion de Roles</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="css/estilo.css">
-        <%
-            Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
-        %>
     </head>
     <body>
         <%
+            Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
             if (request.getParameter("enviar") == null) {
         %>
         <form name="formroles" id="form_roles" method="POST" action="roles.jsp" >

@@ -61,29 +61,19 @@
                 } else {
                     out.print("hidden=''");
                 } %> >
-                <legend>Inventario del aula <% out.print(request.getParameter("aulalista")); %></legend>
+                <legend>Inventario</legend>
                 <%
                     ArrayList itemsaula = co.obtenerItemsAula(Integer.parseInt(request.getParameter("aulalista")));
                     for (Object item : itemsaula) {
                         Item it = (Item) item;
                 %>
                 <div>
-                    <label> ID Item: </label> <input type="text" name="cajaitem" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getId_item()); %>" size="2" />
-                    <label> ID Aula: </label>  <input type="text" name="cajaaula" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getId_aula()); %>" size="2" />
-                    <label> Unidades: </label>  <input type="text" name="cajaunds" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getUds() ); %>" size="2" />
-                    <label> Descripcion: </label>  <input type="text" name="cajadesc" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getDescripcion()); %>" size="7" />
-                    <label> Marca: </label>  <input type="text" name="cajamarca" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getMarca() ); %>" size="7" />
-                    <label> Modelo: </label>  <input type="text" name="cajamod" <% if (co.obtenerAulaAsignada(u.getId_user()) != it.getId_aula()){ out.print("disabled='disabled'"); } %> value="<%  out.print(it.getModelo()); %>" size="7" />
-                    <br>
+                    <p><% out.print(item.toString()); %></p> 
                     <%
                         if (co.obtenerAulaAsignada(u.getId_user()) == it.getId_aula()) { //Comprueba si los items se encuentran en el aula asignada, si estan, permite borrarlos o editarlos.
-                        session.setAttribute("item", it);
                     %>
-                    <a href="controlador.jsp"><input type="button" value="Borrar" name="enviar" /></a>
-                    <a href="editar.jsp" target="blank_" ><input type="button" value="Editar" name="enviar" /></a>
-                    <br>
-                    <br>
-                    <br>
+                    <input type="submit" value="Borrar" name="enviar" />
+                    <input type="submit" value="Editar" name="enviar" />
                     <%
                         }
                     %>    

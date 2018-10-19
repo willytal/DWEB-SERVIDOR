@@ -15,13 +15,12 @@
         <title>Inicio</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <%
-            Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
+
         %>
         <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
-        <%
-            if (request.getParameter("enviar") == null) {
+        <%            if (request.getParameter("enviar") == null) {
         %>    
 
         <form name="formulario"  id="formu" method="POST" action="index.jsp">
@@ -40,17 +39,16 @@
         } else {
             //Si las cajas tienen algo
             //Enviarlo a la conexion y comprobar que ese usuario existe
-
+            Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
             if (!request.getParameter("cajauser").trim().equals("") && !request.getParameter("cajapass").trim().equals("")) {
                 if (co.recuperarUsuario(request.getParameter("cajauser").toString(), request.getParameter("cajapass").toString()) == null) {
-                    
+
         %>
-                <div id="usuarioincorrecto">
-                    <p>Usuario o contraseña incorrectos.</p>        
-                    <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
-                </div>
-        <%
-                } else {
+        <div id="usuarioincorrecto">
+            <p>Usuario o contraseña incorrectos.</p>        
+            <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
+        </div>
+        <%                } else {
                     Usuario u = new Usuario();
                     u = co.recuperarUsuario(request.getParameter("cajauser").toString(), request.getParameter("cajapass").toString());
                     out.print("Existe <br>");

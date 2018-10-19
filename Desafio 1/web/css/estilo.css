@@ -12,7 +12,7 @@ body{
 }
 
 #formu{
-    width: 280px;
+    width: 350px;
     margin: auto;
 }
 
@@ -31,11 +31,16 @@ body{
 }
 
 #form_aulas{
-    width: 800px;
+    width: 900px;
     margin: auto;
     background-color: #CCFF99;
 }
 
 #field_aulas{
     /*height: 475px;*/
+}
+
+fieldset{
+    margin: 20px;
+    padding: 30px;
 }

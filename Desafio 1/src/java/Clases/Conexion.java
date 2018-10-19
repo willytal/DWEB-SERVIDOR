@@ -7,7 +7,6 @@ package Clases;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class Conexion {
@@ -150,11 +149,37 @@ public class Conexion {
         return aulas;
     }
 
+    /**
+     * Devuelve el aula asignada al profesor que le pasamos por 
+     * parametro. (id_user)
+     * @param id_user Se le pasa el id_user del usuario (profesor).
+     * @return Devuelve un entero con el numero de aula asignada.
+     * @throws SQLException 
+     */
+    public int obtenerAulaAsignada(int id_user) throws SQLException {
+        int aula = 0;
+
+        String sentencia = "SELECT id_aula FROM `AULA_ASIGNADA` WHERE id_user=" + id_user;
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+
+        while (cursor.next()) {            
+            aula = Integer.parseInt(cursor.getString("id_aula"));
+        }
+        return aula;
+    }
+
+    /**
+     * Metodo que devuelve un ArrayList con los items del aula que se le pasa.
+     *
+     * @param id_aula Se le pasa el id del aula de la que queremos recuperar los
+     * items
+     * @return Devuelve un ArrayList con items
+     * @throws SQLException
+     */
     public ArrayList obtenerItemsAula(int id_aula) throws SQLException {
         ArrayList items = new ArrayList();
         String sentencia = "SELECT * FROM `INVENTARIO` WHERE id_aula=" + id_aula + ";";
         cursor = Sentencia_SQL.executeQuery(sentencia);
-        
 
         while (cursor.next()) {
             Item it = new Item();
@@ -169,5 +194,20 @@ public class Conexion {
         }
 
         return items;
+    }
+
+    /**
+     * Devuelve true si el elemento que le pasamos se elimina
+     *
+     * @param id_item
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public boolean borrarItem(int id_item) throws SQLException {
+        boolean borrado = false;
+        String sentencia = "DELETE from INVENTARIO WHERE id_item=" + id_item;
+        Sentencia_SQL.executeUpdate(sentencia);
+
+        return borrado;
     }
 }
