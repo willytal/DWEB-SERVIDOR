@@ -4,6 +4,8 @@
     Author     : willy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Clases.Usuario"%>
 <%@page import="Clases.Item"%>
 <%@page import="Clases.Constantes"%>
 <%@page import="Clases.Conexion"%>
@@ -19,11 +21,66 @@
         <%
             Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
 
-            if (session.getAttribute("item") != null) {
-                Item it = (Item) session.getAttribute("item");
-                co.borrarItem(it.getId_item());
+            //*********************** MOSTRAR ******************************
+     
+            if (request.getParameter("enviardatos").equals("Mostrar")) {
+                if (!request.getParameter("aulalista").equals("Selecciona el Aula")) { //Si hay un aula seleccionada
+                    int aula = Integer.parseInt(request.getParameter("aulalista")); //Se recupera el valor de la lista en "aula"
+                    ArrayList items = co.obtenerItemsAula(Integer.parseInt(request.getParameter("aulalista"))); //Se obtienen los items de ese aula en el arralist "items"
+                    session.setAttribute("items", items); //Se mete en la sesion 
+                    response.sendRedirect("profesor.jsp");
+                }else{
+                    response.sendRedirect("profesor.jsp");
+                }
+            }
+
+            //*********************** BORRAR *******************************
+            if (request.getParameter("enviardatos").equals("Borrar")) {
+                ArrayList items = (ArrayList) session.getAttribute("items");
+                Item it = new Item();
+
+                for (Object item : items) {
+                    it = (Item) item;
+                    if (it.getId_item() == Integer.parseInt(request.getParameter("cajaitem"))) {
+                        co.borrarItem(it.getId_item());
+                    }
+                }
+
+                items.remove(it);
                 session.removeAttribute("item");
                 response.sendRedirect("profesor.jsp");
+            }
+
+            //*********************** EDITAR ******************************* 
+            if (request.getParameter("enviardatos").equals("Editar")) {
+                ArrayList items = (ArrayList) session.getAttribute("items"); //Recupero la arraylist de la sesi
+
+                for (Object item : items) {
+                    Item it = (Item) item;
+                    if (it.getId_item() == Integer.parseInt(request.getParameter("cajaitem"))) {
+                        it.setDescripcion(request.getParameter("cajadesc"));
+                        it.setUds(Integer.parseInt(request.getParameter("cajaunds")));
+                        it.setMarca(request.getParameter("cajamarca"));
+                        it.setModelo(request.getParameter("cajamod"));
+                        co.actualizarItem(it.getUds(), it.getDescripcion(), it.getMarca(), it.getModelo(), it.getId_item());
+                    }
+                    item = it;
+                }
+
+                session.setAttribute("items", items);
+
+                response.sendRedirect("profesor.jsp");
+            }
+            
+            //********************* AÑADIR ITEM ****************************
+            
+
+            //******************** CERRAR SESION ***************************
+            if (request.getParameter("enviardatos").equals("Cerrar Sesion")) {
+                session.removeAttribute("usuario");
+                session.removeAttribute("items");
+                session.removeAttribute("item");
+                response.sendRedirect("index.jsp");
             }
         %>
     </body>

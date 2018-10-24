@@ -210,4 +210,16 @@ public class Conexion {
 
         return borrado;
     }
+    
+    public void actualizarItem(int uds, String desc, String marca, String modelo, int id_item) throws SQLException{
+        String sentencia = "UPDATE INVENTARIO SET UDS='" + uds + "', DESCRIPCION='" + desc + "', MARCA='" + marca + "', MODELO='" + modelo + "' WHERE ID_ITEM=" + id_item + ";";
+        Sentencia_SQL.executeUpdate(sentencia);
+    }
+    
+    public void addItem() throws SQLException{
+        String sentencia = "INSERT INTO INVENTARIO (`id_item`, `id_aula`, `uds`, `descripcion`, `marca`, `modelo`) VALUES (NULL, '209', '10', 'Portátil', 'Lenovo', '157Cu');"; 
+                                                                                                                                                                
+                                                                                                                                                             //REVISAR! *********
+        Sentencia_SQL.executeUpdate(sentencia);
+    }
 }

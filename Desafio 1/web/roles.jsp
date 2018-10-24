@@ -51,10 +51,6 @@
                     session.setAttribute("rol", request.getParameter("listroles"));
                     response.sendRedirect("profesor.jsp");
                 }
-                if (request.getParameter("listroles").equals("Editor de Aula")) {
-                    session.setAttribute("rol", request.getParameter("listroles"));
-                    response.sendRedirect("editor.jsp");
-                }
                 if (request.getParameter("listroles").equals("Jefe de Departamento")) {
                     session.setAttribute("rol", request.getParameter("listroles"));
                     response.sendRedirect("jefe.jsp");

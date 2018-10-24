@@ -14,9 +14,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <%
+        <script>
+            function prueba() {
+                alert("prueba");
+            }
 
-        %>
+            function comprobar() {
+                alert("entra");
+                var usercorrecto = "1@1.com";
+                var passcorrecto = "1234";
+                var usuario = document.getElementById("cajausuario");
+                var passwd = document.getElementById("cajapasswd");
+                var cont = 3;
+
+                if (usercorrecto !=== usuario && passcorrecto !=== passwd) {
+                    cont--;
+                    alert("Intentos: " + cont);
+                }
+
+                if (cont === 0) {
+                    document.cookie = "max-age = 30";
+                    document.write("Espera 30 segundos.");
+                }
+
+            }
+            
+        </script>
         <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
@@ -27,10 +50,10 @@
             <fieldset id="fieldlogin">
                 <legend>Login</legend>
 
-                <p> Usuario: <input type="text" name="cajauser" value="" size="15" /> </p>
-                <p> Contraseña: <input type="text" name="cajapass" value="" size="15" /> </p>
+                <p> Usuario: <input type="text" name="cajauser" id="cajausuario" value="" size="15" required=""/> </p>
+                <p> Contraseña: <input type="text" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
 
-                <input type="submit" value="Aceptar" name="enviar" />
+                <input type="submit" value="Aceptar" name="enviar" onclick="comprobar()"/>
 
             </fieldset>
         </form>
