@@ -73,7 +73,18 @@
             }
             
             //********************* AÑADIR ITEM ****************************
-            
+            if (request.getParameter("enviardatos").equals("Introducir Item")) {
+                    
+                    int id_aula = Integer.parseInt(request.getParameter("caja_aula"));
+                    int uds = Integer.parseInt(request.getParameter("caja_uds"));
+                    String desc = request.getParameter("caja_desc");
+                    String marca = request.getParameter("caja_marca");
+                    String modelo = request.getParameter("caja_mod");
+                    
+                    co.addItem(id_aula, uds, desc, marca, modelo);
+                    
+                    response.sendRedirect("anadiritem.jsp");
+                }
 
             //******************** CERRAR SESION ***************************
             if (request.getParameter("enviardatos").equals("Cerrar Sesion")) {

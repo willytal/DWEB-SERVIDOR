@@ -54,3 +54,7 @@ fieldset{
     margin: auto;
     float: right;
 }
+
+#formanadir input{
+    float: right;
+}

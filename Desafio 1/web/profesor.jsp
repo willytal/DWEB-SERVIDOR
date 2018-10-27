@@ -80,7 +80,8 @@
                         <br>
                         <%
                             if (co.obtenerAulaAsignada(u.getId_user()) == it.getId_aula()) { //Comprueba si los items se encuentran en el aula asignada, si estan, permite borrarlos o editarlos.
-                                session.setAttribute("item", it);
+                                session.setAttribute("item", it); //Meto el Item en sesion
+                                session.setAttribute("aula", it.getId_aula()); //Meto el ID Aula en sesion, para poder recuperarlo en Añadir Item
                                 mostrar = true;
                         %>
                         <input type="submit" value="Borrar" name="enviardatos" />
@@ -98,7 +99,7 @@
             </form>
             <%                    }
             %>
-            <a href="javascript:window.open('anadiritem.jsp','toolbar=no', 'top=100, left= 700, width=400, height=500');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> //Se abre en una ventana nueva
+            <a href="javascript:window.open('anadiritem.jsp','toolbar=no', 'top=100, left= 700, width=400, height=500');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
             <%
                 }
             %>

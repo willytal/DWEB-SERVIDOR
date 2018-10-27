@@ -216,10 +216,8 @@ public class Conexion {
         Sentencia_SQL.executeUpdate(sentencia);
     }
     
-    public void addItem() throws SQLException{
-        String sentencia = "INSERT INTO INVENTARIO (`id_item`, `id_aula`, `uds`, `descripcion`, `marca`, `modelo`) VALUES (NULL, '209', '10', 'Portátil', 'Lenovo', '157Cu');"; 
-                                                                                                                                                                
-                                                                                                                                                             //REVISAR! *********
+    public void addItem(int id_aula, int uds, String desc, String marca, String modelo) throws SQLException{
+        String sentencia = "INSERT INTO INVENTARIO (id_item, id_aula, uds, descripcion, marca, modelo) VALUES (NULL, '" + id_aula + "', '" + uds + "', '" + desc + "', '" + marca + "', '" + modelo + "');"; 
         Sentencia_SQL.executeUpdate(sentencia);
     }
 }

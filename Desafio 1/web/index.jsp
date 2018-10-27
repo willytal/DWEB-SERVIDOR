@@ -14,35 +14,49 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="css/estilo.css">
         <script>
-            function prueba() {
-                alert("prueba");
+            var usercorrecto = "1@1.com";
+            var passcorrecto = "1234";
+            var intentos = 1;
+            var usuario = document.getElementById("cajausuario");
+            var passwd = document.getElementById("cajapasswd");
+            var cookie;
+
+            function comprobarCookie() {
+                
+                if (document.cookie !== null) {
+                    alert("Existe");
+                } else {
+                    alert("No existe");
+                }
+                
             }
 
             function comprobar() {
-                alert("entra");
-                var usercorrecto = "1@1.com";
-                var passcorrecto = "1234";
-                var usuario = document.getElementById("cajausuario");
-                var passwd = document.getElementById("cajapasswd");
-                var cont = 3;
+                
+                if (usercorrecto === usuario && passcorrecto === passwd) {
+                    alert("Login correcto");
+                } else {
+                    alert(intentos);
 
-                if (usercorrecto !=== usuario && passcorrecto !=== passwd) {
-                    cont--;
-                    alert("Intentos: " + cont);
-                }
+                    if (intentos <= 3) {
+                        intentos++;
+                    } else {
+                        document.cookie = "nombre=control; max-age = 30";
 
-                if (cont === 0) {
-                    document.cookie = "max-age = 30";
-                    document.write("Espera 30 segundos.");
+                        alert("Espera 30 segundos.");
+                        //document.getElementById("cajausuario").disabled;
+                        //document.getElementById("cajapasswd").disabled;
+                    }
                 }
 
             }
-            
+
         </script>
         <link rel="stylesheet" href="css/estilo.css">
     </head>
-    <body>
+    <body onload="comprobarCookie()">
         <%            if (request.getParameter("enviar") == null) {
         %>    
 
@@ -53,7 +67,7 @@
                 <p> Usuario: <input type="text" name="cajauser" id="cajausuario" value="" size="15" required=""/> </p>
                 <p> Contraseña: <input type="text" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
 
-                <input type="submit" value="Aceptar" name="enviar" onclick="comprobar()"/>
+                <input type="submit" value="Aceptar" name="enviar"/>
 
             </fieldset>
         </form>
