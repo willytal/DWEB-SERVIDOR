@@ -31,7 +31,7 @@ body{
 }
 
 #form_roles{
-    width: 210px;
+    width: 300px;
     margin: auto;
 }
 
@@ -57,4 +57,9 @@ fieldset{
 
 #formanadir input{
     float: right;
+}
+
+#formselect{
+    width: 400px;
+    margin: auto;
 }

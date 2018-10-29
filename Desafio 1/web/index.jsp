@@ -56,7 +56,7 @@
         </script>
         <link rel="stylesheet" href="css/estilo.css">
     </head>
-    <body onload="comprobarCookie()">
+    <body>
         <%            if (request.getParameter("enviar") == null) {
         %>    
 

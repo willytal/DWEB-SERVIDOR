@@ -18,11 +18,13 @@
         <form name="formadditem" id="formanadir" method="POST" action="controlador.jsp">
             <fieldset>
                 <legend> Añadir Item </legend>
-                <label>ID Aula: </label> <input class type="text" name="caja_aula" value="<% out.print(session.getAttribute("aula").toString()); %>" size="15" /><br><br>
+                <label> ID Aula: </label> <input class type="text" name="caja_aula" disabled="" value="<% out.print(session.getAttribute("aula").toString()); %>" size="15" /><br><br>
                 <label> Unidades: </label> <input type="text" name="caja_uds" value="" size="15" /><br><br>
                 <label> Descripcion: </label> <input type="text" name="caja_desc" value="" size="15" /><br><br>
                 <label> Marca: </label> <input type="text" name="caja_marca" value="" size="15" /><br><br>
                 <label> Modelo: </label> <input type="text" name="caja_mod" value="" size="15" /><br><br>
+                
+                <input type="text" name="caja_aula" value="<% out.print(session.getAttribute("aula").toString()); %>" hidden=""/>
                 <input type="submit" value="Introducir Item" name="enviardatos" />
             </fieldset>
         </form>

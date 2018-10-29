@@ -167,6 +167,21 @@ public class Conexion {
         }
         return aula;
     }
+    
+    //Puede darse el caso de que un profesor tenga mas de un aula asignada
+    /*public ArrayList obtenerAulasAsignadas(int id_user) throws SQLException {
+        ArrayList aula = new ArrayList();
+
+        String sentencia = "SELECT id_aula FROM `AULA_ASIGNADA` WHERE id_user=" + id_user;
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+
+        while (cursor.next()) {            
+            aula.add(Integer.parseInt(cursor.getString("id_aula")));
+        }
+        return aula;
+    }*/
+    
+    
 
     /**
      * Metodo que devuelve un ArrayList con los items del aula que se le pasa.
@@ -219,5 +234,35 @@ public class Conexion {
     public void addItem(int id_aula, int uds, String desc, String marca, String modelo) throws SQLException{
         String sentencia = "INSERT INTO INVENTARIO (id_item, id_aula, uds, descripcion, marca, modelo) VALUES (NULL, '" + id_aula + "', '" + uds + "', '" + desc + "', '" + marca + "', '" + modelo + "');"; 
         Sentencia_SQL.executeUpdate(sentencia);
+    }
+    
+    public void asignarAula(int id_aula, int id_user) throws SQLException{
+        String sentencia = "INSERT INTO AULA_ASIGNADA (id_aula_asig, id_aula, id_user) VALUES (NULL, '" + id_aula + "', '" + id_user + "');";
+        Sentencia_SQL.executeUpdate(sentencia);
+    }
+    
+    /**
+     * Obtiene los profesores del mismo departamento que el jefe de departamento que hay en sesion
+     * @param id_dep Id del departamento del Jefe de Departamento
+     * @return Devuelve un arraylist con los profesores de ese departamento
+     * @throws SQLException 
+     */
+    public ArrayList obtenerUsuariosNoDirector(int id_dep) throws SQLException{
+        String sentencia = "SELECT * FROM USUARIO JOIN ROL_ASIGNADO ON USUARIO.id_user=ROL_ASIGNADO.id_user WHERE id_rol!=0 AND id_dep=" + id_dep;
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+        ArrayList usuarios = new ArrayList();
+        
+        
+        while (cursor.next()) {   
+            Usuario profesor = new Usuario();
+            profesor.setId_user(Integer.parseInt(cursor.getString("id_user")));
+            profesor.setNombre(cursor.getString("nombre"));
+            profesor.setEmail(cursor.getString("email"));
+            profesor.setPassword(cursor.getString("password"));
+            profesor.setId_depart(Integer.parseInt(cursor.getString("id_dep")));
+            usuarios.add(profesor);
+        }
+        
+        return usuarios;
     }
 }

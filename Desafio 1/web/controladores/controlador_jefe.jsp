@@ -22,15 +22,15 @@
             Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
 
             //*********************** MOSTRAR ******************************
-     
             if (request.getParameter("enviardatos").equals("Mostrar")) {
                 if (!request.getParameter("aulalista").equals("Selecciona el Aula")) { //Si hay un aula seleccionada
                     int aula = Integer.parseInt(request.getParameter("aulalista")); //Se recupera el valor de la lista en "aula"
                     ArrayList items = co.obtenerItemsAula(Integer.parseInt(request.getParameter("aulalista"))); //Se obtienen los items de ese aula en el arralist "items"
                     session.setAttribute("items", items); //Se mete en la sesion 
-                    response.sendRedirect("roles/profesor.jsp");
-                }else{
-                    response.sendRedirect("roles/profesor.jsp");
+                    session.setAttribute("aula", aula);
+                    response.sendRedirect("../roles/jefedep.jsp");
+                } else {
+                    response.sendRedirect("../roles/jefedep.jsp");
                 }
             }
 
@@ -48,7 +48,7 @@
 
                 items.remove(it);
                 session.removeAttribute("item");
-                response.sendRedirect("roles/profesor.jsp");
+                response.sendRedirect("../roles/jefedep.jsp");
             }
 
             //*********************** EDITAR ******************************* 
@@ -69,29 +69,37 @@
 
                 session.setAttribute("items", items);
 
-                response.sendRedirect("roles/profesor.jsp");
+                response.sendRedirect("../roles/jefedep.jsp");
             }
-            
+
             //********************* AÑADIR ITEM ****************************
             if (request.getParameter("enviardatos").equals("Introducir Item")) {
-                    
-                    int id_aula = Integer.parseInt(request.getParameter("caja_aula"));
-                    int uds = Integer.parseInt(request.getParameter("caja_uds"));
-                    String desc = request.getParameter("caja_desc");
-                    String marca = request.getParameter("caja_marca");
-                    String modelo = request.getParameter("caja_mod");
-                    
-                    co.addItem(id_aula, uds, desc, marca, modelo);
-                    
-                    response.sendRedirect("anadiritem.jsp");
-                }
+
+                int id_aula = Integer.parseInt(session.getAttribute("aula").toString());
+                int uds = Integer.parseInt(request.getParameter("caja_uds"));
+                String desc = request.getParameter("caja_desc");
+                String marca = request.getParameter("caja_marca");
+                String modelo = request.getParameter("caja_mod");
+
+                co.addItem(id_aula, uds, desc, marca, modelo); //El ID Item se genera automaticamente
+
+                response.sendRedirect("../anadiritem.jsp");
+            }
+
+            //******************** ASIGNAR AULA ****************************
+            if (request.getParameter("enviardatos").equals("Asignar")) {
+                
+                co.asignarAula(Integer.parseInt(request.getParameter("aulalista")), Integer.parseInt(request.getParameter("listaprofes")));
+
+                response.sendRedirect("../aulas.jsp");
+            }
 
             //******************** CERRAR SESION ***************************
             if (request.getParameter("enviardatos").equals("Cerrar Sesion")) {
                 session.removeAttribute("usuario");
                 session.removeAttribute("items");
                 session.removeAttribute("item");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("../index.jsp");
             }
         %>
     </body>

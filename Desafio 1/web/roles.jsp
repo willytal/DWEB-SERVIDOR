@@ -42,22 +42,32 @@
                 </select>
 
                 <input type="submit" value="Aceptar" name="enviar" />
+                <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
             </fieldset>
 
         </form>
         <%
-            } else {
-                if (request.getParameter("listroles").equals("Profesor")) {
-                    session.setAttribute("rol", request.getParameter("listroles"));
-                    response.sendRedirect("profesor.jsp");
-                }
-                if (request.getParameter("listroles").equals("Jefe de Departamento")) {
-                    session.setAttribute("rol", request.getParameter("listroles"));
-                    response.sendRedirect("jefe.jsp");
+        } else {
+            if (request.getParameter("listroles").equals("Profesor")) {
+                session.setAttribute("rol", request.getParameter("listroles"));
+                response.sendRedirect("roles/profesor.jsp");
+            }
+            if (request.getParameter("listroles").equals("Jefe de Departamento")) {
+                session.setAttribute("rol", request.getParameter("listroles"));
+        %>
+        <form name="formselector" id="formselect">
+            <fieldset>
+                <legend>¿Que quieres hacer?</legend>
+                <a href="roles/jefedep.jsp"><input type="button" value="Ir a Inventario" name="enviar" /></a>
+                <a href="aulas.jsp"><input type="button" value="Ir a Asignar Aulas" name="enviar" /></a>
+                <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
+            </fieldset>
+        </form>
+        <%
                 }
                 if (request.getParameter("listroles").equals("Director")) {
                     session.setAttribute("rol", request.getParameter("listroles"));
-                    response.sendRedirect("director.jsp");
+                    response.sendRedirect("roles/director.jsp");
                 }
             }
         %>

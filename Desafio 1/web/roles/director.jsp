@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Aulas</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link rel="stylesheet" href="css/estilo.css">
+        <link rel="stylesheet" href="../css/estilo.css">
         <%
             Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
             boolean mostrar = false;
@@ -32,7 +32,7 @@
                     Usuario u = (Usuario) session.getAttribute("usuario");
             %>
 
-            <form name="formaulas" id="form_aulas" method="POST" action="controlador.jsp"> <!-- -->
+            <form name="formaulas" id="form_aulas" method="POST" action="../controlador.jsp"> <!-- -->
 
                 <fieldset id="field_aulas">
                     <legend>Aulas - Rol Profesor</legend>
@@ -65,7 +65,7 @@
                     Item it = (Item) item;
                     session.setAttribute("item", it);
             %>
-            <form name="formitems" id="form_items" method="POST" action="controlador.jsp">
+            <form name="formitems" id="form_items" method="POST" action="../controlador.jsp">
                 <fieldset>
                     <div>
                         <label> ID Item: </label> <input type="text" name="cajaitem" disabled="" value="<% out.print(it.getId_item()); %>" size="2" />
@@ -89,7 +89,6 @@
                         <input hidden="" type="submit" value="Añadir Item" name="enviardatos" />
                         <br>
                         <br>
-                        <br>
                         <%
                             }
                         %>
@@ -99,14 +98,14 @@
             </form>
             <%                    }
             %>
-            <a href="javascript:window.open('anadiritem.jsp','toolbar=no', 'top=100, left= 700, width=400, height=500');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
+            <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
             <%
                 }
             %>
 
-            <form name="formadicional" id="form_csesion" method="POST" action="controlador.jsp">
+            <form name="formadicional" id="form_csesion" method="POST" action="../controlador.jsp">
                 <input type="submit" value="Cerrar Sesion" name="enviardatos" />
-                <a href="roles.jsp"><input type="button" value="Volver" name="volver" /></a>
+                <a href="../roles.jsp"><input type="button" value="Volver" name="volver" /></a>
             </form>
 
 
