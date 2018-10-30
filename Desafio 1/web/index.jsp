@@ -12,11 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inicio</title>
+        <title> Inicio - IFP DeathStar - “Do. Or do not. There is no try.” — Yoda </title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="css/estilo.css">
         <script>
-            var usercorrecto = "1@1.com";
+            /*var usercorrecto = "1@1.com";
             var passcorrecto = "1234";
             var intentos = 1;
             var usuario = document.getElementById("cajausuario");
@@ -51,10 +51,9 @@
                     }
                 }
 
-            }
+            }*/
 
         </script>
-        <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
         <%            if (request.getParameter("enviar") == null) {
@@ -68,7 +67,7 @@
                     <legend>Login</legend>
 
                     <p> Usuario: <input type="text" name="cajauser" id="cajausuario" value="" size="15" required=""/> </p>
-                    <p> Contraseña: <input type="text" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
+                    <p> Contraseña: <input type="password" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
 
                     <input type="submit" value="Aceptar" name="enviar"/>
 

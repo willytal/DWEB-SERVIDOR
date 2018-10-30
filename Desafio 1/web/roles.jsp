@@ -26,7 +26,7 @@
         <div id="divform">
 
             <div id="divusuario">
-                <p>Bienvenido <% out.print(u.getNombre()); %> </p>
+                <p> Bienvenido <% out.print(u.getNombre()); %> </p>
             </div>
 
             <form name="formroles" id="form_roles" method="POST" action="roles.jsp" >
@@ -75,7 +75,7 @@
                         <legend>¿Que quieres hacer?</legend>
                         <a href="roles/jefedep.jsp"><input type="button" value="Ir a Inventario" name="enviar" /></a><br><br>
                         <a href="aulas.jsp"><input type="button" value="Ir a Asignar Aulas" name="enviar" /></a><br><br>
-                        <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
+                        <a href="roles.jsp"><input type="button" value="Volver" name="volver" /></a>
                     </fieldset>
                 </form>
             </div>
@@ -97,7 +97,7 @@
                         <a href="asignajefe.jsp"><input type="button" value="Asignar Jefe de Departamento" name="enviar" /></a><br><br>
                         <a href="adduser.jsp"><input type="button" value="Gestion de Usuarios" name="enviar" /></a><br><br>
                         <a href="addaula.jsp"><input type="button" value="Gestion de Aulas" name="enviar" /></a><br><br>
-                        <a href="index.jsp"><input type="button" value="Volver" name="volver" /></a>
+                        <a href="roles.jsp"><input type="button" value="Volver" name="volver" /></a>
                     </fieldset>
                 </form>
             </div>
