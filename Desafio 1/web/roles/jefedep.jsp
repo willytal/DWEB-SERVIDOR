@@ -30,17 +30,19 @@
                 if (session.getAttribute("usuario") != null) {
                     Usuario u = (Usuario) session.getAttribute("usuario");
             %>
-
+            <div id="divusuario">
+                <p>Usuario conectado: <% out.print(u.getNombre()); %> , <% out.print(session.getAttribute("rolelegido")); %></p>
+            </div>
             <form name="formaulas" id="form_aulas" method="POST" action="../controladores/controlador_jefe.jsp"> <!-- -->
 
                 <fieldset id="field_aulas">
-                    <legend> Aulas - Jefe de Departamento </legend>
+                    <legend> Inventario de Aulas - Jefe del Departamento de <% out.print(co.obtenerDepartamento(u.getId_depart())); %> </legend>
                     <select name="aulalista">
                         <option selected=""> Selecciona el Aula </option>
                         <%
                             LinkedList list_aulas = co.obtenerAulasDepartamento(u.getId_user());
 
-                            for (Object id_aula : list_aulas) {                             
+                            for (Object id_aula : list_aulas) {
                         %>
                         <option><% out.print(id_aula.toString()); %></option>
                         <%
@@ -86,7 +88,7 @@
 
                 </fieldset>
             </form>
-            <%      session.setAttribute("item", it); //Meto el Item en sesion//Meto el ID Aula en sesion,para poder recuperarlo en Añadir Item    
+            <%      session.setAttribute("item", it);
                 }
             %>
             <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->

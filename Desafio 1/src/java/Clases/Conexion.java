@@ -236,6 +236,12 @@ public class Conexion {
         Sentencia_SQL.executeUpdate(sentencia);
     }
     
+    /**
+     * Asigna un aula al usuario que se le pase
+     * @param id_aula Aula a asignar
+     * @param id_user Usuario al que se quiere asignar
+     * @throws SQLException 
+     */
     public void asignarAula(int id_aula, int id_user) throws SQLException{
         String sentencia = "INSERT INTO AULA_ASIGNADA (id_aula_asig, id_aula, id_user) VALUES (NULL, '" + id_aula + "', '" + id_user + "');";
         Sentencia_SQL.executeUpdate(sentencia);
@@ -264,5 +270,91 @@ public class Conexion {
         }
         
         return usuarios;
+    }
+    
+    /**
+     * Metodo que devuelve la descripcion del departamento del usuario que hay en sesion.
+     * @param id_dep Id del departamento del usuario
+     * @return Devuelve un string con la descripcion del departamento
+     * @throws SQLException 
+     */
+    public String obtenerDepartamento(int id_dep) throws SQLException{
+        String depart="";
+        String sentencia = "SELECT DESCRIPCION FROM DEPARTAMENTO WHERE id_jefe=" + id_dep;
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+        
+        while (cursor.next()) {            
+            depart = cursor.getString("DESCRIPCION");
+        }
+        return depart;
+    }
+    
+    public ArrayList obtenerDepartamentos() throws SQLException{
+        ArrayList departamentos = new ArrayList();
+        String departamento = "";
+        String sentencia = "SELECT DESCRIPCION FROM DEPARTAMENTO;";
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+        
+        while (cursor.next()) {            
+            departamento = cursor.getString("DESCRIPCION");
+            departamentos.add(departamento);
+        }
+        return departamentos;
+    }
+    
+    public ArrayList obtenerProfesoresDepartamento(String desc) throws SQLException{
+        ArrayList profesores = new ArrayList();
+        Usuario u = new Usuario();
+        String sentencia = "SELECT * FROM USUARIO JOIN DEPARTAMENTO ON USUARIO.id_dep=DEPARTAMENTO.id_dep WHERE descripcion='" + desc + "';";
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+        
+        while (cursor.next()) {            
+            u.setNombre(cursor.getString("nombre"));
+            u.setId_depart(Integer.parseInt(cursor.getString("id_dep")));
+            u.setId_user(Integer.parseInt(cursor.getString("id_user")));
+            profesores.add(u);
+        }
+        
+        return profesores;
+    }
+    
+    public ArrayList obtenerProfesores() throws SQLException{
+        ArrayList profesores = new ArrayList();
+                   
+        String sentencia = "SELECT * FROM USUARIO;";
+        cursor = Sentencia_SQL.executeQuery(sentencia);
+        
+        while (cursor.next()) {   
+            Usuario u = new Usuario();   
+            u.setNombre(cursor.getString("nombre"));
+            u.setId_depart(Integer.parseInt(cursor.getString("id_dep")));
+            u.setId_user(Integer.parseInt(cursor.getString("id_user")));
+            profesores.add(u);
+        }
+        
+        return profesores;
+    }
+    
+    /**
+     * Añade un usuario a la Base de Datos
+     * @param nombre
+     * @param email
+     * @param pass
+     * @param id_dep
+     * @throws SQLException 
+     */
+    public void addUsuario(String nombre, String email, String pass, int id_dep) throws SQLException{
+        String sentencia = "INSERT INTO USUARIO (id_user, nombre, email, password, id_dep) VALUES (NULL, '" + nombre + "', '" + email + "', '" + pass + "', '" + id_dep + "');";
+        Sentencia_SQL.executeUpdate(sentencia);
+    }
+    
+    /**
+     * Elimina un usuario de la base de datos
+     * @param nombre Nombre del usuario a borrar
+     * @throws SQLException 
+     */
+    public void eliminarUsuario(String nombre) throws SQLException{
+        String sentencia = "DELETE FROM USUARIO WHERE NOMBRE='" + nombre + "';";
+        Sentencia_SQL.executeUpdate(sentencia);
     }
 }

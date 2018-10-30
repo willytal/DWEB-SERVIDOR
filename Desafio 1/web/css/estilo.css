@@ -9,11 +9,18 @@ and open the template in the editor.
 */
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: black;
+    color: white;
 }
 
 #divform{
     width: 900px;
     margin: auto;
+    background-color: #CC99FF;
+    min-height: 300px;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
 }
 
 #formu{
@@ -30,24 +37,18 @@ body{
     margin: auto;
 }
 
-#form_roles{
-    width: 300px;
-    margin: auto;
-}
-
-#form_aulas, #form_items{
+#form_aulas, #form_items, #form_roles{
     width: 900px;
     margin: auto;
-    background-color: #CCFF99;
-}
-
-#field_aulas{
-    /*height: 475px;*/
+    background-color: #CC33FF;
+    border-radius: 10px;
 }
 
 fieldset{
     margin: 20px;
     padding: 30px;
+    border-radius: 10px;
+    border-color: white;
 }
 
 #additem{
@@ -60,6 +61,48 @@ fieldset{
 }
 
 #formselect{
-    width: 400px;
+    width: 900px;
     margin: auto;
+    text-align: center;
+    background-color: #CC33FF;
+    border-radius: 10px;
+}
+
+#formselect input{
+    width: 200px;
+}
+
+#formlogin{
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    border-radius: 10px;
+    background-image: url(../img/bgs.png);
+    background-repeat: no-repeat;
+    background-position-y: 200px;
+    background-position-x: 100px;
+    text-align: center;
+
+}
+
+#divitem{
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    background-color: #CC99FF;
+    min-height: 300px;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+}
+
+#field_adduser{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#field_adduser select, #field_adduser input{
+    width: 140px;
 }

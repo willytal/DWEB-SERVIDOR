@@ -22,15 +22,15 @@
             Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
 
             //*********************** MOSTRAR ******************************
-     
             if (request.getParameter("enviardatos").equals("Mostrar")) {
                 if (!request.getParameter("aulalista").equals("Selecciona el Aula")) { //Si hay un aula seleccionada
                     int aula = Integer.parseInt(request.getParameter("aulalista")); //Se recupera el valor de la lista en "aula"
                     ArrayList items = co.obtenerItemsAula(Integer.parseInt(request.getParameter("aulalista"))); //Se obtienen los items de ese aula en el arralist "items"
                     session.setAttribute("items", items); //Se mete en la sesion 
-                    response.sendRedirect("roles/profesor.jsp");
-                }else{
-                    response.sendRedirect("roles/profesor.jsp");
+                    session.setAttribute("aula", aula);
+                    response.sendRedirect("../roles/director.jsp");
+                } else {
+                    response.sendRedirect("../roles/director.jsp");
                 }
             }
 
@@ -48,7 +48,7 @@
 
                 items.remove(it);
                 session.removeAttribute("item");
-                response.sendRedirect("roles/profesor.jsp");
+                response.sendRedirect("../roles/director.jsp");
             }
 
             //*********************** EDITAR ******************************* 
@@ -69,30 +69,59 @@
 
                 session.setAttribute("items", items);
 
-                response.sendRedirect("roles/profesor.jsp");
+                response.sendRedirect("../roles/director.jsp");
             }
-            
+
             //********************* AÑADIR ITEM ****************************
             if (request.getParameter("enviardatos").equals("Introducir Item")) {
-                    
-                    int id_aula = Integer.parseInt(request.getParameter("caja_aula"));
-                    int uds = Integer.parseInt(request.getParameter("caja_uds"));
-                    String desc = request.getParameter("caja_desc");
-                    String marca = request.getParameter("caja_marca");
-                    String modelo = request.getParameter("caja_mod");
-                    
-                    co.addItem(id_aula, uds, desc, marca, modelo);
-                    
-                    response.sendRedirect("anadiritem.jsp");
-                }
 
+                int id_aula = Integer.parseInt(session.getAttribute("aula").toString());
+                int uds = Integer.parseInt(request.getParameter("caja_uds"));
+                String desc = request.getParameter("caja_desc");
+                String marca = request.getParameter("caja_marca");
+                String modelo = request.getParameter("caja_mod");
+
+                co.addItem(id_aula, uds, desc, marca, modelo); //El ID Item se genera automaticamente
+
+                response.sendRedirect("../anadiritem.jsp");
+            }
+
+            //******************** ASIGNAR AULA ****************************
+            if (request.getParameter("enviardatos").equals("Asignar")) {
+
+                co.asignarAula(Integer.parseInt(request.getParameter("aulalista")), Integer.parseInt(request.getParameter("listaprofes")));
+
+                response.sendRedirect("../aulas.jsp");
+            }
+
+            //******************* QUITAR AULA ASIGNADA *********************
+            if (request.getParameter("enviardatos").equals("Quitar")) {
+                //Crear metodo que elimine el campo de la tabla aula_asignada
+            }
+
+            //******************** AÑADIR USUARIO **************************
+            if (request.getParameter("enviardatos").equals("Registrar Usuario")) {
+
+                //Falta controlar cajas en blanco
+                co.addUsuario(request.getParameter("cajanombre"), request.getParameter("cajaemail"), request.getParameter("cajapass"), Integer.parseInt(request.getParameter("cajaid")));
+
+                response.sendRedirect("../adduser.jsp");
+            }
+
+            //******************* ELIMINAR USUARIO ************************
+            if (request.getParameter("enviardatos").equals("Eliminar Usuario")) {
+                co.eliminarUsuario(request.getParameter("selectuser"));
+
+                response.sendRedirect("../adduser.jsp");
+            }
+            
             //******************** CERRAR SESION ***************************
             if (request.getParameter("enviardatos").equals("Cerrar Sesion")) {
                 session.removeAttribute("usuario");
                 session.removeAttribute("items");
                 session.removeAttribute("item");
                 session.removeAttribute("rolelegido");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("../index.jsp");
             }
         %>
     </body>

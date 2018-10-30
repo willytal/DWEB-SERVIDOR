@@ -23,44 +23,56 @@
             Conexion co = new Conexion(Constantes.bbdd, Constantes.user, Constantes.passwd);
             Usuario jefe = (Usuario) session.getAttribute("usuario");
         %>
-        <form name="formaulas" id="form_aulas" method="POST" action="controladores/controlador_jefe.jsp">
-            <fieldset id="field_aulas">
-                <legend>Aulas</legend>
-                
-                <label> ID Aula: </label>
-                <select name="aulalista">
-                    <%                        LinkedList list_aulas = co.obtenerAulasDepartamento(jefe.getId_user());
+        <div id="divform">
 
-                        for (Object id_aula : list_aulas) {
-                    %>
-                    <option><% out.print(id_aula.toString()); %></option>
-                    <%
-                        }
-                    %>
-                </select>
+            <div id="divusuario">
+                <p>Usuario conectado: <% out.print(jefe.getNombre()); %> , <% out.print(session.getAttribute("rolelegido")); %></p>
+            </div>
 
-                <label> ID Profesor: </label>
-                <select name="listaprofes">
-                    <%
-                        ArrayList profesores = co.obtenerUsuariosNoDirector(jefe.getId_depart());
-                        Usuario profe = new Usuario();
 
-                        for (Object profesor : profesores) {
-                            profe = (Usuario) profesor;
-                    %>
-                    <option> <% out.print(profe.getId_user()); %> </option>
-                    <%
-                        }
-                    %>
-                </select>
+            <form name="formaulas" id="form_aulas" method="POST" action="controladores/controlador_jefe.jsp">
+                <fieldset id="field_aulas">
+                    <legend>Aulas del departamento de <% out.print(co.obtenerDepartamento(jefe.getId_depart())); %></legend>
 
-                <br>
-                <br>
-                <input type="submit" value="Quitar" name="enviardatos" />
-                <input type="submit" value="Asignar" name="enviardatos" />
-            </fieldset>
+                    <label> ID Aula: </label>
+                    <select name="aulalista">
+                        <%                        LinkedList list_aulas = co.obtenerAulasDepartamento(jefe.getId_user());
 
-        </form>
+                            for (Object id_aula : list_aulas) {
+                        %>
+                        <option> <% out.print(id_aula.toString()); %> </option>
+                        <%
+                            }
+                        %>
+                    </select>
 
+                    <label> ID Profesor: </label>
+                    <select name="listaprofes">
+                        <%
+                            ArrayList profesores = co.obtenerUsuariosNoDirector(jefe.getId_depart());
+                            Usuario profe = new Usuario();
+
+                            for (Object profesor : profesores) {
+                                profe = (Usuario) profesor;
+                        %>
+                        <option> <% out.print(profe.getId_user()); %> </option>
+                        <%
+                            }
+                        %>
+                    </select>
+
+                    <br>
+                    <br>
+                    <!-- <input type="submit" value="Quitar" name="enviardatos" />  Se implementara en la siguiente release--> 
+                    <input type="submit" value="Asignar" name="enviardatos" />
+                </fieldset>
+
+            </form>
+
+            <form name="formadicional" id="form_csesion" method="POST" action="controladores/controlador_jefe.jsp">
+                <input type="submit" value="Cerrar Sesion" name="enviardatos" />
+                <a href="roles.jsp"><input type="button" value="Volver" name="volver" /></a>
+            </form>
+        </div>
     </body>
 </html>

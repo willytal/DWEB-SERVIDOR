@@ -32,14 +32,17 @@
                     Usuario u = (Usuario) session.getAttribute("usuario");
             %>
 
-            <form name="formaulas" id="form_aulas" method="POST" action="../controlador.jsp"> <!-- -->
+            <div id="divusuario">
+                <p>Usuario conectado: <% out.print(u.getNombre()); %> , <% out.print(session.getAttribute("rolelegido")); %></p>
+            </div>
+            <form name="formaulas" id="form_aulas" method="POST" action="../controladores/controlador_director.jsp"> <!-- -->
 
                 <fieldset id="field_aulas">
-                    <legend>Aulas - Rol Profesor</legend>
+                    <legend>Inventario de todas las Aulas - Director</legend>
                     <select name="aulalista">
                         <option selected=""> Selecciona el Aula </option>
                         <%
-                            LinkedList list_aulas = co.obtenerAulasDepartamento(u.getId_user());
+                            LinkedList list_aulas = co.obtenerAulas();
 
                             for (Object id_aula : list_aulas) {
                         %>
@@ -65,7 +68,7 @@
                     Item it = (Item) item;
                     session.setAttribute("item", it);
             %>
-            <form name="formitems" id="form_items" method="POST" action="../controlador.jsp">
+            <form name="formitems" id="form_items" method="POST" action="../controladores/controlador_director.jsp">
                 <fieldset>
                     <div>
                         <label> ID Item: </label> <input type="text" name="cajaitem" disabled="" value="<% out.print(it.getId_item()); %>" size="2" />
@@ -78,30 +81,22 @@
                         <input type="text" name="cajaitem" hidden="" value="<% out.print(it.getId_item()); %>" size="2" />
                         <input type="text" name="cajaaula" hidden="" value="<% out.print(it.getId_aula()); %>" size="2" />
                         <br>
-                        <%
-                            if (co.obtenerAulaAsignada(u.getId_user()) == it.getId_aula()) { //Comprueba si los items se encuentran en el aula asignada, si estan, permite borrarlos o editarlos.
-                                session.setAttribute("item", it); //Meto el Item en sesion
-                                session.setAttribute("aula", it.getId_aula()); //Meto el ID Aula en sesion, para poder recuperarlo en Añadir Item
-                                mostrar = true;
-                        %>
+
                         <input type="submit" value="Borrar" name="enviardatos" />
                         <input type="submit" value="Editar" name="enviardatos" />
                         <input hidden="" type="submit" value="Añadir Item" name="enviardatos" />
                         <br>
                         <br>
-                        <%
-                            }
-                        %>
                     </div>
 
                 </fieldset>
             </form>
             <%                    }
             %>
-            <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
-            <%
-                }
-            %>
+            <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
+                <%
+                    }
+                %>
 
             <form name="formadicional" id="form_csesion" method="POST" action="../controlador.jsp">
                 <input type="submit" value="Cerrar Sesion" name="enviardatos" />

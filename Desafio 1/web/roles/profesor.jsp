@@ -32,10 +32,13 @@
                     Usuario u = (Usuario) session.getAttribute("usuario");
             %>
 
+            <div id="divusuario">
+                <p>Usuario conectado: <% out.print(u.getNombre()); %> , <% out.print(session.getAttribute("rolelegido")); %></p>
+            </div>
             <form name="formaulas" id="form_aulas" method="POST" action="../controlador.jsp"> <!-- -->
 
                 <fieldset id="field_aulas">
-                    <legend>Aulas - Profesor </legend>
+                    <legend>Inventario de Aulas - Profesor del departamento de <% out.print(co.obtenerDepartamento(u.getId_depart())); %></legend>
                     <select name="aulalista">
                         <option selected=""> Selecciona el Aula </option>
                         <%
@@ -98,10 +101,12 @@
             </form>
             <%                    }
             %>
-            <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input <% if (!mostrar) {out.print("hidden=''");} %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
-            <%
-                }
-            %>
+            <a href="javascript:window.open('../anadiritem.jsp','toolbar=no', 'top=300, left= 750, width=400, height=400');void 0;"><input <% if (!mostrar) {
+                    out.print("hidden=''");
+                } %>type="button" id="additem" value="Añadir Item" name="enviardatos" /></a> <!-- Se abre en una ventana nueva -->
+                <%
+                    }
+                %>
 
             <form name="formadicional" id="form_csesion" method="POST" action="../controlador.jsp">
                 <input type="submit" value="Cerrar Sesion" name="enviardatos" />

@@ -88,17 +88,28 @@
 
             //******************** ASIGNAR AULA ****************************
             if (request.getParameter("enviardatos").equals("Asignar")) {
-                
+
                 co.asignarAula(Integer.parseInt(request.getParameter("aulalista")), Integer.parseInt(request.getParameter("listaprofes")));
 
                 response.sendRedirect("../aulas.jsp");
             }
+
+            //******************* QUITAR AULA ASIGNADA *********************
+            /*if (request.getParameter("enviardatos").equals("Quitar")) {
+                //Crear metodo que elimine el campo de la tabla aula_asignada
+            }*/
+            
+            //*************** ASIGNAR JEFE DE DEPARTAMENTO *****************
+            if (request.getParameter("enviardatos").equals("Asignar Jefe")) {
+                    
+                }
 
             //******************** CERRAR SESION ***************************
             if (request.getParameter("enviardatos").equals("Cerrar Sesion")) {
                 session.removeAttribute("usuario");
                 session.removeAttribute("items");
                 session.removeAttribute("item");
+                session.removeAttribute("rolelegido");
                 response.sendRedirect("../index.jsp");
             }
         %>

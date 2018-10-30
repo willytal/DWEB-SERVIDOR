@@ -23,18 +23,18 @@
             var passwd = document.getElementById("cajapasswd");
             var cookie;
 
-            function comprobarCookie() {
-                
+            function comprobarCookie() { //En desarrollo
+
                 if (document.cookie !== null) {
                     alert("Existe");
                 } else {
                     alert("No existe");
                 }
-                
+
             }
 
-            function comprobar() {
-                
+            function comprobar() { //En desarrollo
+
                 if (usercorrecto === usuario && passcorrecto === passwd) {
                     alert("Login correcto");
                 } else {
@@ -60,17 +60,22 @@
         <%            if (request.getParameter("enviar") == null) {
         %>    
 
-        <form name="formulario"  id="formu" method="POST" action="index.jsp">
-            <fieldset id="fieldlogin">
-                <legend>Login</legend>
 
-                <p> Usuario: <input type="text" name="cajauser" id="cajausuario" value="" size="15" required=""/> </p>
-                <p> Contraseña: <input type="text" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
+        <div id="formlogin">
+            <h1>IFP DeathStar</h1>
+            <form name="formulario" id="formu" method="POST" action="index.jsp">
+                <fieldset id="fieldlogin">
+                    <legend>Login</legend>
 
-                <input type="submit" value="Aceptar" name="enviar"/>
+                    <p> Usuario: <input type="text" name="cajauser" id="cajausuario" value="" size="15" required=""/> </p>
+                    <p> Contraseña: <input type="text" name="cajapass" id="cajaupasswd" value="" size="15" required="" /> </p>
 
-            </fieldset>
-        </form>
+                    <input type="submit" value="Aceptar" name="enviar"/>
+
+                </fieldset>
+            </form>
+        </div>
+
 
         <%
         } else {
